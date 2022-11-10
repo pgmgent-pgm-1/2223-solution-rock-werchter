@@ -9,6 +9,7 @@
       console.log('2. Cache Elements');
       this.$lineup = document.querySelector('.lineup');
       this.$concertDetails = document.querySelector('.concert-details');
+      this.$digitalClock = document.querySelector('.digital-clock');
     },
     generateUI() {
       console.log('3. Generate User Interface');
@@ -20,6 +21,9 @@
           this.generateUIForConcertDetails(id);
         });
       });
+      this.clockInterval = setInterval(() => {
+        this.updateDigitalClock();
+      }, 500); 
     },
     generateHTMLForLineup(concerts) {
       let tmpStr = '';
@@ -46,6 +50,7 @@
       this.$concertDetails.innerHTML = this.generateHTMLForConcertDetails(concert);
     },
     generateHTMLForConcertDetails(concert) {
+      console.log(concert);
       return `
       <div class="concert-details__left">
         <picture class="concert-details__picture">
@@ -60,6 +65,9 @@
         <p>${concert.band.synopsis}</p>
         <div class="concert-details__media">
           ${this.generateHTMLForMedia(concert.band.media)}
+        </div>
+        <div class="concert-details__review">
+          ${this.generateHTMLForReviews(concert.reviews)}
         </div>
       </div>
       `;
@@ -98,6 +106,20 @@
       }).join('');
       return tmpStr;
     },
+    updateDigitalClock() {
+      this.$digitalClock.innerHTML = new Date().toLocaleTimeString();
+    },
+    generateHTMLForReviews(reviews) {
+      return reviews.map(review => {
+        return `
+        <div class="review">
+          <p>${review.comment}</p>
+          <span class="">${'🌟'.repeat(review.rating)}</span>
+          <span class="">${new Date(review.reviewedAt).toDateString()}</span>
+        </div>
+        `;
+      }).join('');
+    }
   };
   app.init();
 })();
