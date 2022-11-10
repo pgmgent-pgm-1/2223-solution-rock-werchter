@@ -58,16 +58,20 @@
         </picture>
       </div>
       <div class="concert-details__right">
-        <h1>${concert.band.name}</h1>
+        <div class="concert-details__meta">${new Date(concert.from).toDateString()}</div>
+        <h1 class="concert-details__bandname">${concert.band.name}</h1>
         <ul class="socials__list">
           ${this.generateHTMLForSocials(concert.band.socials)}
         </ul>
-        <p>${concert.band.synopsis}</p>
+        <p class="concert-details__synopsis">${concert.band.synopsis}</p>
         <div class="concert-details__media">
           ${this.generateHTMLForMedia(concert.band.media)}
         </div>
-        <div class="concert-details__review">
-          ${this.generateHTMLForReviews(concert.reviews)}
+        <div class="concert-details__reviews">
+          <h3 class="concert-details__reviews-title">Reviews</h3>
+          <div class="concert-details__reviews-list">
+            ${this.generateHTMLForReviews(concert.reviews)}
+          </div>
         </div>
       </div>
       `;
@@ -75,7 +79,7 @@
     generateHTMLForSocials(socials) {
       let tmpStr = '';
       for (let prop in socials) {
-        tmpStr += `<li><a href="${socials[prop]}" target="__blank" rel="noreferrer nofollow">${this.generateHTMLForSocialMediaIcon(prop)}</i><span>${prop}</span></a></li>`
+        tmpStr += `<li class="socials__list-item"><a href="${socials[prop]}" target="__blank" rel="noreferrer nofollow">${this.generateHTMLForSocialMediaIcon(prop)}</i><span>${prop}</span></a></li>`
       }
       return tmpStr;
     },
@@ -94,7 +98,7 @@
         let tmpStr = '';
         switch (medium.type) {
           case 'youtube': tmpStr = `
-          <iframe width="702" height="395" src="${medium.link}" title="MUSE - Blockades [Official Music Video]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="100%" height="395" src="https://www.youtube.com/embed/${medium.link}" title="MUSE - Blockades [Official Music Video]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           `; break;
           case 'image': default: tmpStr = `
           <picture class="concert-details__medium-picture">
@@ -112,10 +116,12 @@
     generateHTMLForReviews(reviews) {
       return reviews.map(review => {
         return `
-        <div class="review">
-          <p>${review.comment}</p>
-          <span class="">${'🌟'.repeat(review.rating)}</span>
-          <span class="">${new Date(review.reviewedAt).toDateString()}</span>
+        <div class="concert-details__reviews-list-item">
+          <div class="review__meta">
+            <span class="review__rating">${'🌟'.repeat(review.rating)}</span>
+            <span class="review__date">${new Date(review.reviewedAt).toDateString()}</span>
+          </div>
+          <p class="review__comment">${review.comment}</p>
         </div>
         `;
       }).join('');

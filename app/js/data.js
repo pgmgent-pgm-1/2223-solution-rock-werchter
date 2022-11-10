@@ -80,7 +80,7 @@ const lineup = [
       },
       media: [
         {
-          link: 'https://youtu.be/WMxEKlDtt_4',
+          link: 'WMxEKlDtt_4',
           type: 'youtube',
         },
         {
@@ -153,7 +153,7 @@ const lineup = [
       },
       media: [
         {
-          link: 'https://youtu.be/8muGWOjNoSo',
+          link: '8muGWOjNoSo',
           type: 'youtube',
         },
         {

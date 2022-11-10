@@ -1,8 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,600&display=swap');
 
 :root {
-  --p-2: 8px;
+  --p: 8px;
+  --p-2: calc(var(--p) * 2);
+  --p-4: calc(var(--p) * 4);
+  --p-8: calc(var(--p) * 8);
+  --p-16: calc(var(--p) * 16);
   --font-family-source-sans-pro: 'Source Sans Pro', sans-serif;
+  --color-black: hsl(0, 0%, 0%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-yellow: hsl(65, 83%, 66%);
+  --color-yellow-light: hsl(65, 83%, 92%);
+  --color-pink: hsl(357, 100%, 80%);
+  --color-green: hsl(119, 42%, 45%);
 }
 
 * {
@@ -77,4 +87,152 @@ h6 {
   height: 100%;
 
   object-fit: cover;
+}
+
+.digital-clock {
+  font-size: 4rem;
+  font-weight: 900;
+  text-align: center;
+
+  padding: var(--p-4);
+
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.concert-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.concert-details__left,
+.concert-details__right {
+  width: 50%;
+}
+
+.concert-details__left {
+  background-color: var(--color-pink);
+  padding: var(--p-16) 0;
+}
+
+.concert-details__right {
+  background-color: var(--color-white);
+  padding: var(--p-8) var(--p-8) var(--p-16) ;
+}
+
+.concert-details__picture {
+  display: block;
+  width: 100%;
+}
+
+.concert-details__picture > img {
+  width: 100%;
+}
+
+.concert-details__meta {
+  margin-bottom: var(--p-4);
+  text-align: center;
+}
+
+.concert-details__bandname {
+  font-size: 3rem;
+  font-weight: bold;
+
+  text-align: center;
+  margin-bottom: var(--p-4);
+}
+
+.socials__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  list-style: none;
+
+  margin-bottom: var(--p-4);
+}
+
+.socials__list-item {
+  margin: 0 var(--p-2);
+
+  font-size: 1.5rem;
+}
+
+.socials__list-item > a {
+  color: var(--color-black);
+}
+
+.socials__list-item > a:hover {
+  color: var(--color-pink);
+}
+
+.socials__list-item > a > span {
+  display: none;
+}
+
+.concert-details__synopsis {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
+
+  margin-bottom: var(--p-4);
+}
+
+.concert-details__media {
+  overflow: hidden;
+  width: 100%;
+
+  margin-bottom: var(--p-4);
+}
+
+.concert-details__media > * {
+  margin-bottom: var(--p-4);
+}
+
+.concert-details__media > *:last-child {
+  margin-bottom: 0;
+}
+
+.concert-details__medium-picture {
+  display: block;
+  width: 100%;
+}
+
+.concert-details__medium-picture > iframe {
+  width: 100%;
+}
+
+.concert-details__medium-picture > img {
+  width: 100%;
+}
+
+.concert-details__reviews {
+  
+}
+
+.concert-details__reviews-title {
+  font-size: 2rem;
+  margin-bottom: var(--p-2);
+}
+
+.concert-details__reviews-list {
+
+}
+
+.concert-details__reviews-list-item {
+  margin-bottom: var(--p-2);
+}
+
+
+.review__date {
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.review__comment {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
 }
